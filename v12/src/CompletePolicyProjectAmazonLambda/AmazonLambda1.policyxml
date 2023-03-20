@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<policies>
+  <policy policyType="amazonlambda" policyName="AmazonLambda1" policyTemplate="online_v1_basic">
+    <credentialName>CompletePolicyProjectAmazonLambda_AmazonLambda1</credentialName>
+    <applicationVersion>v1</applicationVersion>
+    <applicationType>online</applicationType>
+    <authenticationMethod>BASIC</authenticationMethod>
+    <region>us-east-1</region>
+  </policy>
+</policies>
