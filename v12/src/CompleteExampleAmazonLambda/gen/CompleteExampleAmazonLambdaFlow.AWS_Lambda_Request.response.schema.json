@@ -1,0 +1,503 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "items": {
+    "type": "object",
+    "properties": {
+      "FunctionArn": {
+        "displayOrder": 1,
+        "title": "Function ARN",
+        "description": "The function's Amazon Resource Name (ARN). The length is limited to 64 characters if you specify only the function name, and it is only applicable to the full Amazon Resource Name (ARN). You can append a version number or alias to any of the formats.",
+        "type": "string"
+      },
+      "FunctionName": {
+        "displayOrder": 2,
+        "title": "Function name",
+        "description": "The name of the Lambda function. The length is limited to 64 characters if you specify only the function name, and it is only applicable to the full Amazon Resource Name (ARN).",
+        "display": {
+          "nameProperty": true
+        },
+        "type": "string"
+      },
+      "Role": {
+        "displayOrder": 4,
+        "title": "Role",
+        "description": "The Amazon Resource Name (ARN) of the function's execution role",
+        "type": "string"
+      },
+      "Architectures": {
+        "displayOrder": 5,
+        "title": "Architecture",
+        "description": "The instruction set architecture that the function supports. The default architecture value is x86_64.",
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "DeadLetterConfig": {
+        "displayOrder": 7,
+        "title": "Dead letter config",
+        "description": "A dead letter queue configuration that specifies the queue or topic where Lambda sends asynchronous events when the processing fails",
+        "type": "object",
+        "properties": {
+          "TargetArn": {
+            "title": "Target ARN",
+            "description": "The Amazon Resource Name (ARN) of an Amazon SQS queue or Amazon SNS topic",
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Description": {
+        "displayOrder": 8,
+        "title": "Description",
+        "description": "A description of the function",
+        "type": "string"
+      },
+      "Environment": {
+        "displayOrder": 9,
+        "title": "Environment",
+        "description": "The environment variables that are accessible from function code during execution",
+        "type": "object",
+        "properties": {
+          "Variables": {
+            "title": "Variables",
+            "description": "The environment variable key-value pairs",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "environmentVariableName": {
+                  "displayOrder": 1,
+                  "title": "Environment variable name",
+                  "description": "The name of the specified environment variable",
+                  "type": "string"
+                },
+                "environmentVariableValue": {
+                  "displayOrder": 2,
+                  "title": "Environment variable value",
+                  "description": "The value of the specified environment variable",
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            },
+            "additionalItems": false
+          }
+        },
+        "additionalProperties": false
+      },
+      "EphemeralStorage": {
+        "displayOrder": 10,
+        "title": "Ephemeral storage",
+        "description": "The size of the function's /tmp directory in MB, where the value can be between 512 and 10240 MB. The default value is 512 MB.",
+        "type": "object",
+        "properties": {
+          "Size": {
+            "title": "Size",
+            "description": "The size of the function’s /tmp directory",
+            "type": "number"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FileSystemConfigs": {
+        "displayOrder": 11,
+        "title": "File system configs",
+        "description": "The connection settings for an Amazon EFS file system",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "Arn": {
+              "displayOrder": 1,
+              "title": "ARN",
+              "description": "The Amazon Resource Name (ARN) of the Amazon EFS access point that provides access to the file system",
+              "type": "string"
+            },
+            "LocalMountPath": {
+              "displayOrder": 2,
+              "title": "Local mount path",
+              "description": "The path where the function can access the file system, which starts with /mnt/",
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "additionalItems": false
+      },
+      "Handler": {
+        "displayOrder": 12,
+        "title": "Handler",
+        "description": "The name of the method within your code that Lambda calls to execute the function. Handler is required if the deployment package is a .zip file archive.",
+        "type": "string"
+      },
+      "KMSKeyArn": {
+        "displayOrder": 14,
+        "title": "KMS key ARN",
+        "description": "The ARN of the Amazon Web Services Key Management Service (KMS) key that is used to encrypt your function's environment variables. If the key is not provided, Lambda uses a default service key.",
+        "type": "string"
+      },
+      "MemorySize": {
+        "displayOrder": 16,
+        "title": "Memory size",
+        "description": "The amount of memory available to the function at runtime. The default value is 128 MB. The memory size value can be any number that is a multiple of 1 MB.",
+        "type": "number"
+      },
+      "PackageType": {
+        "displayOrder": 17,
+        "title": "Package type",
+        "description": "The type of deployment package. Set to Image for container image and Zip for .zip file archive.",
+        "enum": [
+          "Zip",
+          "Image"
+        ],
+        "type": "string"
+      },
+      "Runtime": {
+        "displayOrder": 19,
+        "title": "Runtime",
+        "description": "The identifier of the function's runtime. The runtime is required if the deployment package is a .zip file archive.",
+        "enum": [
+          "nodejs",
+          "nodejs4.3",
+          "nodejs6.10",
+          "nodejs8.10",
+          "nodejs10.x",
+          "nodejs12.x",
+          "nodejs14.x",
+          "nodejs16.x",
+          "java8",
+          "java8.al2",
+          "java11",
+          "python2.7",
+          "python3.6",
+          "python3.7",
+          "python3.8",
+          "python3.9",
+          "dotnetcore1.0",
+          "dotnetcore2.0",
+          "dotnetcore2.1",
+          "dotnetcore3.1",
+          "dotnet6",
+          "nodejs4.3-edge",
+          "go1.x",
+          "ruby2.5",
+          "ruby2.7",
+          "provided",
+          "provided.al2"
+        ],
+        "type": "string"
+      },
+      "Tags": {
+        "displayOrder": 20,
+        "title": "Tags",
+        "description": "A list of tags to apply to the function",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "tagKey": {
+              "displayOrder": 1,
+              "title": "Tag key",
+              "description": "The key of the specified tag",
+              "type": "string"
+            },
+            "tagValue": {
+              "displayOrder": 2,
+              "title": "Tag value",
+              "description": "The value of the specified tag",
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "additionalItems": false
+      },
+      "Timeout": {
+        "displayOrder": 21,
+        "title": "Timeout",
+        "description": "The amount of time that Lambda allows a function to run before stopping it, in seconds. By default, the time is set to 3 seconds. The maximum allowed time is 900 seconds.",
+        "type": "number"
+      },
+      "TracingConfig": {
+        "displayOrder": 22,
+        "title": "Tracing config",
+        "description": "The X-Ray tracing configuration of a function. Set the mode to Active to sample and trace a subset of incoming requests with X-Ray.",
+        "type": "object",
+        "properties": {
+          "Mode": {
+            "displayOrder": 26,
+            "title": "Mode",
+            "description": "The tracing mode",
+            "enum": [
+              "Active",
+              "PassThrough"
+            ],
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ImageUri": {
+        "displayOrder": 25,
+        "title": "Image URI",
+        "description": "The URI of a container image in the Amazon ECR registry. Do not use this option for a function defined with a .zip file archive.",
+        "type": "string"
+      },
+      "Location": {
+        "displayOrder": 26,
+        "title": "Location",
+        "description": "The presigned URL that can be used to download the deployment package",
+        "type": "string"
+      },
+      "RepositoryType": {
+        "displayOrder": 27,
+        "title": "Repository type",
+        "description": "The service that is hosting the file",
+        "type": "string"
+      },
+      "ResolvedImageUri": {
+        "displayOrder": 28,
+        "title": "Resolved image URI",
+        "description": "The resolved URI for the image",
+        "type": "string"
+      },
+      "CodeSha256": {
+        "displayOrder": 29,
+        "title": "Code SHA256",
+        "description": "The SHA256 hash of the function's deployment package",
+        "type": "string"
+      },
+      "CodeSize": {
+        "displayOrder": 30,
+        "title": "Code size",
+        "description": "The size of the function's deployment package in bytes",
+        "type": "number"
+      },
+      "ImageConfigResponse": {
+        "displayOrder": 31,
+        "title": "Image config response",
+        "description": "The function's image configuration values",
+        "type": "object",
+        "properties": {
+          "ImageConfig": {
+            "displayOrder": 1,
+            "title": "Image config",
+            "description": "The container image configuration values that override the values in the container image Dockerfile",
+            "type": "object",
+            "properties": {
+              "EntryPoint": {
+                "displayOrder": 1,
+                "title": "Entry point",
+                "description": "The entry point to the application, which is the location to the runtime executable",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "Command": {
+                "displayOrder": 2,
+                "title": "Command",
+                "description": "The parameters to pass in with the entry point",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "WorkingDirectory": {
+                "displayOrder": 3,
+                "title": "Working directory",
+                "description": "The name of the working directory",
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          },
+          "Error": {
+            "displayOrder": 2,
+            "title": "Error",
+            "description": "The error response of the get function configuration",
+            "type": "object",
+            "properties": {
+              "ErrorCode": {
+                "displayOrder": 1,
+                "title": "Error code",
+                "description": "The error code",
+                "type": "string"
+              },
+              "Message": {
+                "displayOrder": 2,
+                "title": "Message",
+                "description": "The error message",
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      },
+      "LastModified": {
+        "displayOrder": 32,
+        "title": "Last modified",
+        "description": "The date the function was last updated in ISO 8601 UTC format, YYYY-MM-DDThh:mm:ss.sTZD",
+        "type": "string",
+        "format": "date-time"
+      },
+      "LastUpdateStatus": {
+        "displayOrder": 33,
+        "title": "Last update status",
+        "description": "The status of the last update that was performed on the function",
+        "type": "string"
+      },
+      "LastUpdateStatusReason": {
+        "displayOrder": 34,
+        "title": "Last update status reason",
+        "description": "The reason for the last update status that was performed on the function",
+        "type": "string"
+      },
+      "LastUpdateStatusReasonCode": {
+        "displayOrder": 35,
+        "title": "Last update status reason code",
+        "description": "The reason code for the last update status that was performed on the function",
+        "type": "string"
+      },
+      "MasterArn": {
+        "displayOrder": 36,
+        "title": "Master ARN",
+        "description": "The ARN of the main function",
+        "type": "string"
+      },
+      "RevisionId": {
+        "displayOrder": 37,
+        "title": "Revision ID",
+        "description": "The revision ID of the function or alias. Only update the function if the revision ID matches the ID that is specified.",
+        "type": "string"
+      },
+      "SigningJobArn": {
+        "displayOrder": 38,
+        "title": "Signing job ARN",
+        "description": "The ARN of the signing job",
+        "type": "string"
+      },
+      "SigningProfileVersionArn": {
+        "displayOrder": 39,
+        "title": "Signing profile version ARN",
+        "description": "The ARN of the signing profile version",
+        "type": "string"
+      },
+      "State": {
+        "displayOrder": 40,
+        "title": "State",
+        "description": "The current state of the function. If the state is inactive, you can reactivate the function by invoking it.",
+        "type": "string"
+      },
+      "StateReason": {
+        "displayOrder": 41,
+        "title": "State reason",
+        "description": "The reason for the function's current state",
+        "type": "string"
+      },
+      "StateReasonCode": {
+        "displayOrder": 42,
+        "title": "State reason code",
+        "description": "The reason code for the function's current state. If the code is creating, you can't invoke or modify the function.",
+        "type": "string"
+      },
+      "Version": {
+        "displayOrder": 43,
+        "title": "Version",
+        "description": "The version of the Lambda function",
+        "type": "string"
+      },
+      "Layers": {
+        "displayOrder": 45,
+        "title": "Layers",
+        "description": "The function's layers",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "Arn": {
+              "displayOrder": 1,
+              "title": "ARN",
+              "description": "The Amazon Resource Name (ARN) of the function layer",
+              "type": "string"
+            },
+            "CodeSize": {
+              "displayOrder": 2,
+              "title": "Code size",
+              "description": "The size of the layer archive in bytes",
+              "type": "number"
+            },
+            "SigningJobArn": {
+              "displayOrder": 3,
+              "title": "Signing job ARN",
+              "description": "The Amazon Resource Name (ARN) of a signing job",
+              "type": "string"
+            },
+            "SigningProfileVersionArn": {
+              "displayOrder": 4,
+              "title": "Signing profile version ARN",
+              "description": "The Amazon Resource Name (ARN) for a signing profile version",
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "additionalItems": false
+      },
+      "VpcConfig": {
+        "displayOrder": 46,
+        "title": "VPC config",
+        "description": "The VPC security groups and subnets that are attached to a Lambda function",
+        "type": "object",
+        "properties": {
+          "SecurityGroupIds": {
+            "displayOrder": 1,
+            "title": "Security group IDs",
+            "description": "A list of VPC security groups IDs",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "SubnetIds": {
+            "displayOrder": 2,
+            "title": "Subnet IDs",
+            "description": "A list of VPC subnet IDs",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "VpcId": {
+            "displayOrder": 3,
+            "title": "VPC ID",
+            "description": "The ID of the VPC",
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Concurrency": {
+        "displayOrder": 56,
+        "title": "Concurrency",
+        "description": "The function's reserved concurrency",
+        "type": "object",
+        "properties": {
+          "ReservedConcurrentExecutions": {
+            "title": "Reserved concurrent executions",
+            "description": "The number of concurrent executions that are reserved for the function",
+            "type": "number"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "title": "function",
+    "additionalProperties": false
+  },
+  "type": "array",
+  "title": "function"
+}
